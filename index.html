@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: "Noto Sans";
+      background-color: black;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      user-select: all;
+    }
+
+    #screens {
+      background-color: rgb(199, 114, 114);
+      width: 1280px;
+      height: 720px;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #transient {
+      background-color: white;
+      width: 1280px;
+      height: 720px;
+      opacity: 0%;
+      /*
+      animation: fade 1s;
+      animation-fill-mode: forwards;
+      */
+    }
+
+    #menu {
+      z-index: 0;
+    }
+
+    #ui {
+      z-index: 1;
+    }
+
+
+    @keyframes fade {
+      from {
+        opacity: 100%;
+      }
+
+      to {
+        opacity: 0%;
+      }
+    }
+
+
+
+
+    .center {
+      margin: 0;
+      padding: 0;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transform-origin: left top;
+    }
+
+    .distort {
+      font-family: Courier;
+      font-weight: bold;
+    }
+    img:hover {
+      background-color: blueviolet;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="screens" onmouseover="contextmenu=false;" onmouseout="contextmenu=true;">
+    <h1 class="center">This is a header</h1>
+    This scaled <span class="distort">window</span> is 1280x720
+    <div id="master">
+      <canvas id="game"></canvas>
+      <div id="displayables">
+
+      </div>
+    </div>
+    <div class="center" id="transient">
+      <div id="menu">
+        <h1>Doki Doki</h1>
+      </div>
+    </div>
+  </div>
+  <div id="overlay">
+    <div id="ui">
+
+    </div>
+  </div>
+  <script>console.clear();</script>
+
+  <!--LIBRARIES-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+  <!-- Tone.js WebAudio Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"
+    integrity="sha512-59wz3/QJMP1QgULLB5O08pqS8wIdlvK1iJaRZm6ESyRrUuxjdRrnKepXKbSTbjX3ZZZ19AbiCJZEaZN7Zm8OjQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Songs (too large so had to make them external) -->
+  <script
+    src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/Dreams_of_Love_and_Literature.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/Flute.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/My_Confession.js"></script>
+  
+    <!-- Game Scripts -->
+  <script src="Scripts/Music.js" class="es6-script"></script>
+  <script src="Scripts/ATL.js" class="es6-script"></script>
+  <script src="Scripts/Animation.js" class="es6-script"></script>
+  <script src="Scripts/Displayables.js" class="es6-script"></script>
+
+  
+  <script class='es6-script'>
+    var width = 1280, height = 720;
+    var d = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
+    var d2 = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
+    //Displayable.init(); //adds id's to the <img>'s
+    d.show;
+    d2.hide;
+    d.anchor = '0.5 1';
+    d.ypos = height-d.html.height;
+    ATL.block = () => {
+      console.log(ATL.repeated); //why does it queue twice???
+
+      ATL
+      .schedule(() => { d.xpos++; })
+      .repeat(99)
+      .pause
+
+      //this isn't doubled though...
+      .block=()=>
+        ATL.schedule(()=>{d.rotate = Math.floor(Math.random() * 45);})
+        .pause
+        .repeat = 2;
+      
+
+      ATL.repeat = 1;
+    };
+    //This knows that its done, but why is this doubled as well??
+    ATL
+    .next
+    .schedule(()=>{d.alpha = 0.5; d.rotate = 0; })
+    .pause
+    .next
+    .schedule(()=>{ d.alpha = 1; });
+
+    /*
+    ATL.schedule(() => console.log('done?'))
+    .next
+    .schedule(()=>console.log('2'));
+    */
+    function draw() {
+      ATL.exec;
+      window.requestAnimationFrame(draw);
+    }
+    window.requestAnimationFrame(draw);
+  </script>
+
+  <script>
+    var contextmenu = true;
+    $(window).contextmenu((ev) => contextmenu ? $(this).unbind('submit').submit() : ev.preventDefault());
+
+    function resize(element) {
+      element.className = 'center';
+      var scl = Math.min(window.innerWidth / element.clientWidth, window.innerHeight / element.clientHeight);
+      element.style.transform = `scale(${scl})`;
+      element.style.margin = `-${element.clientHeight * scl * 0.5}px 0 0 -${element.clientWidth * scl * 0.5}px`;
+    }
+    resize(screens);
+    window.addEventListener('resize', () => resize(gameWindow));
+
+    //Runs the ES6 scripts. From: https://khanacademy.org/cs/i/5376764965912576
+    var scripts = document.querySelectorAll(".es6-script");
+    for (var i = 0; i < scripts.length; i++) {
+      var script = document.createElement("script");
+      script.innerHTML = scripts[i].innerHTML;
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
+
+</html>
