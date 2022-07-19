@@ -113,7 +113,7 @@ var Music = {
     /* Reset and start the Transport */
     resetTransport()
     Tone.Transport.start();
-
+    
     /* Update Current Song*/
     this.current = song.header.name;
 
@@ -121,9 +121,7 @@ var Music = {
     song.header.tempos.forEach((e) => {
       Tone.Transport.schedule(() => Tone.Transport.bpm.value = e.bpm, Tone.Ticks(e.ticks));
     });
-    song.header.timeSignatures.forEach((e) => {
-      Tone.Transport.schedule(() => Tone.Transport.timeSignature = e.timeSignature, Tone.Ticks(e.ticks));
-    });
+    song.header.timeSignatures.forEach((e) => { Tone.Transport.schedule(() => Tone.Transport.timeSignature = e.timeSignature, Tone.Ticks(e.ticks)); });
     song.tracks.forEach((e) => playTrack(e));
   },
   stop: function () {
@@ -131,3 +129,4 @@ var Music = {
     this.current = '';
   }
 };
+export default Music;
