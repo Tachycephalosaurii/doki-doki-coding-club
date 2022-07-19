@@ -17,6 +17,15 @@ const easeout = t => 1.0 - cos(t * PI / 2.0);
 
 const Animation = {
   stack: {},
+  /**
+   * Warp a variable to a value.
+   * 
+   * @param {function} op Easing Function
+   * @param {time} duration How long the animation should take
+   * @param {string} path Name of the variable to change
+   * @param {value} to Value to animate to
+   * @returns {function} A function that checks if the animation is finished
+   */
   warp: function (op, duration, path, to) {
     for (var i = 2; i < arguments.length; i += 2) {
       Animation.stack[arguments[i]] = {
@@ -27,7 +36,10 @@ const Animation = {
     }
     return () => !Animation.stack[arguments[2]];
   },
-  
+  /**
+   * Execute warpings
+   * @syntax Animation.exec;
+   */
   get exec() {
     var time;
     for (var path in this.stack) {
