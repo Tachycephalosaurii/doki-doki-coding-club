@@ -169,7 +169,6 @@
   <script>
     var contextmenu = true;
     $(window).contextmenu((ev) => contextmenu ? $(this).unbind('submit').submit() : ev.preventDefault());
-
     function resize(element) {
       element.className = 'center';
       var scl = Math.min(window.innerWidth / element.clientWidth, window.innerHeight / element.clientHeight);
@@ -188,5 +187,4 @@
     }
   </script>
 </body>
-
 </html>
