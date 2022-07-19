@@ -166,12 +166,6 @@ const ATL = {
     return this;
   },
   set pause(time) {
-    /*
-    Schedule a pause
-
-    Syntax:
-    ATL.pause = [float];
-    */
     this.next.schedule(function () {
       var start = Date.now();
       return () => Date.now() - start > time * 1000;
