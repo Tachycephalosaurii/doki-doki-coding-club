@@ -70,7 +70,7 @@
   },
 
   /**
-   * Clear action queue
+   * Clear action queue.
    * @syntax ATL.clear;
    */
   get clear() {
@@ -79,7 +79,7 @@
   },
 
   /**
-   * Create an ATL block
+   * Create an ATL block.
    * @syntax 
       ATL.block = fn;
       ATL.block = () => {};
@@ -107,7 +107,7 @@
   get repeated() { return this.block.repeated; },
 
   /**
-   * Schedule actions in the next queue
+   * Schedule actions in the next queue.
    * @syntax ATL.next;
    */
   get next() {
@@ -116,7 +116,7 @@
   },
 
   /**
-   * Schedule actions to the previous queue
+   * Schedule actions to the previous queue.
    * @syntax ATL.prev;
    */
   get prev() {
@@ -127,14 +127,14 @@
   /**
    * @param {integer} reps How many times to repeat
    * 
-   * Repeat the latest scheduled action
+   * Repeat the latest scheduled action.
    * @syntax ATL.repeat(reps*);
       @default reps is Infinity
    * 
-   * Repeat the current block infinitely
+   * Repeat the current block infinitely.
    * @syntax ATL.repeat;
    * 
-   * Repeat the current block a number of times
+   * Repeat the current block a number of times.
    * @syntax ATL.repeat = reps;
    */
   get repeat() {
@@ -155,7 +155,7 @@
   },
   
   /**
-   * Schedule a pause
+   * Schedule a pause.
    * @syntax
        ATL.pause;
        ATL.pause = seconds;
