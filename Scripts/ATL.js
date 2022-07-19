@@ -2,7 +2,7 @@
  * Animation and Transformation Language
  * @see https://www.renpy.org/doc/html/atl.html
  */
-const ATL = {
+var ATL = {
   queue: [],
   to: 0,
   current: 0,
