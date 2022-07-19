@@ -127,7 +127,7 @@
   <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Displayables.js" class="es6-script"></script>
 
   
-  <script class='es6-script'>
+  <script>
     var width = 1280, height = 720;
     var d = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
     var d2 = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
@@ -177,7 +177,8 @@
     }
     resize(screens);
     window.addEventListener('resize', () => resize(gameWindow));
-
+  </script>
+  <script>
     //Runs the ES6 scripts. From: https://khanacademy.org/cs/i/5376764965912576
     var scripts = document.querySelectorAll(".es6-script");
     for (var i = 0; i < scripts.length; i++) {
