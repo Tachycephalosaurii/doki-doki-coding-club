@@ -148,8 +148,6 @@
         ATL.schedule(()=>{d.rotate = Math.floor(Math.random() * 45);})
         .pause
         .repeat = 2;
-      
-
       ATL.repeat = 1;
     };
     //This knows that its done, but why is this doubled as well??
@@ -159,12 +157,7 @@
     .pause
     .next
     .schedule(()=>{ d.alpha = 1; });
-
-    /*
-    ATL.schedule(() => console.log('done?'))
-    .next
-    .schedule(()=>console.log('2'));
-    */
+    
     function draw() {
       ATL.exec;
       window.requestAnimationFrame(draw);
