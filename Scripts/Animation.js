@@ -37,3 +37,5 @@ const Animation = {
     }
   }
 }, warp = Animation.warp;
+export default Animation;
+export { replace, PI, cos, constrain, lerp, pause, linear, ease, easein, easeout };

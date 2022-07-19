@@ -120,14 +120,19 @@
   <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/Flute.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/My_Confession.js"></script>
   
-    <!-- Game Scripts -->
-    <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Globals.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Music.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/ATL.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Animation.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Displayables.js"></script>
 
-  <script>
+  <!-- Game Scripts -->
+  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Music.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/ATL.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Displayables.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Animation.js"></script>
+
+  <script type="application/javascript">
+    import Music from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Music.js";
+    import ATL from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Music.js";
+    import Displayable from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Displayables.js";
+    import Animation from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Animation.js";
+
     var width = 1280, height = 720;
     var d = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
     var d2 = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
@@ -162,7 +167,7 @@
     window.addEventListener('click', ()=>location.reload());
   </script>
 
-  <script>
+  <script type="application/javascript">
     var screens = document.getElementById("screens");
     var contextmenu = true;
     $(window).contextmenu((ev) => contextmenu ? $(this).unbind('submit').submit() : ev.preventDefault());
