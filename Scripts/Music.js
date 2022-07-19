@@ -129,4 +129,4 @@ var Music = {
     this.current = '';
   }
 };
-export { Music, resetTransport, controlChange, getInstrument, playTrack };
+export default Music;

@@ -137,28 +137,28 @@ class Displayable {
   get yalign() { return this.ypos; }
 
   set offset(o) {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     t[2] = `translate(${o[0]}px, ${o[1]}px)`;
     this.html.style.transform = t.join(' ');
   }
   get offset() { return [this.xoffset, this.yoffset]; }
 
   set xoffset(x) {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     t[2] = `translate(${x}px, ${t[2].split(', ')[1].split(')')[0]}`;
     this.html.style.transform = t.join(' ');
   }
   get xoffset() {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     return getValue(t[2].split('(')[1].split(', ')[0]);
   }
   set yoffset(y) {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     t[2] = `translate(${t[2].split('(')[1].split(', ')[0]}, ${y}px`;
     this.html.style.transform = t.join(' ');
   }
   get yoffset() {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     return getValue(t[2].split(', ')[1].split(')')[0]);
   }
 
@@ -176,41 +176,41 @@ class Displayable {
   }
 
   set rotate(r) {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     t[1] = `rotate(${r}deg)`;
     this.html.style.transform = t.join(' ');
   }
   get rotate() {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     return getValue(t[1].slice(7, -1));
   }
 
   set zoom(z) {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     if (typeof z === 'object') t[0] = `scale(${z[0]}, ${z[1]})`;
     else t[0] = `scale(${z}, ${z})`;
-    d.html.style.transform = t.join(' ');
+    this.html.style.transform = t.join(' ');
   }
   get zoom() { return [this.xzoom, this.yzoom]; }
   set xzoom(x) {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     var res = t[0].slice(6, -1).split(', ');
     t[0] = `scale(${x}, ${res[1]})`;
-    d.html.style.transform = t.join(' ');
+    this.html.style.transform = t.join(' ');
   }
   get xzoom() {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     var res = t[0].slice(6, -1).split(', ');
     return +res[0];
   }
   set yzoom(y) {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     var res = t[0].slice(6, -1).split(', ');
     t[0] = `scale(${res[0]}, ${y})`;
-    d.html.style.transform = t.join(' ');
+    this.html.style.transform = t.join(' ');
   }
   get yzoom() {
-    var t = d.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
+    var t = this.html.style.transform.split(/(?!\(.*)\s(?![^(]*?\))/g);
     var res = t[0].slice(6, -1).split(', ');
     return +res[1];
   }
@@ -263,5 +263,4 @@ Displayable.init = async () => {
   Displayable.all = Object.keys(window).filter((e) => window[e] instanceof Displayable);
   Displayable.all.forEach((e) => window[e].name = e);
 }
-
-export { Displayable, pos, getUnit, getValue, float, int };
+export default Displayable;
