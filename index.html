@@ -120,11 +120,11 @@
   <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/My_Confession.js"></script>
   
     <!-- Game Scripts -->
-    <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Globals.js" class="es6-script"></script>
-    <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Music.js" class="es6-script"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/ATL.js" class="es6-script"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Animation.js" class="es6-script"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Displayables.js" class="es6-script"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Globals.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Music.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/ATL.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Animation.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Scripts/Displayables.js"></script>
 
   
   <script>
@@ -177,15 +177,6 @@
     }
     resize(screens);
     window.addEventListener('resize', () => resize(gameWindow));
-  </script>
-  <script>
-    //Runs the ES6 scripts. From: https://khanacademy.org/cs/i/5376764965912576
-    var scripts = document.querySelectorAll(".es6-script");
-    for (var i = 0; i < scripts.length; i++) {
-      var script = document.createElement("script");
-      script.innerHTML = scripts[i].innerHTML;
-      document.body.appendChild(script);
-    }
   </script>
 </body>
 </html>
