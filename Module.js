@@ -2,7 +2,7 @@
  * Animation and Transformation Language
  * @see https://www.renpy.org/doc/html/atl.html
  */
- export var ATL = {
+ var ATL = {
   queue: [],
   to: 0,
   current: 0,
@@ -172,3 +172,4 @@
     });
   },
 };
+export default ATL;
