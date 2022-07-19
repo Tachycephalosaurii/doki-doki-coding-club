@@ -136,21 +136,16 @@
     d.anchor = '0.5 1';
     d.ypos = height-d.html.height;
     ATL.block = () => {
-      console.log(ATL.repeated); //why does it queue twice???
-
       ATL
       .schedule(() => { d.xpos++; })
       .repeat(99)
       .pause
-
-      //this isn't doubled though...
       .block=()=>
         ATL.schedule(()=>{d.rotate = Math.floor(Math.random() * 45);})
         .pause
         .repeat = 2;
       ATL.repeat = 1;
     };
-    //This knows that its done, but why is this doubled as well??
     ATL
     .next
     .schedule(()=>{d.alpha = 0.5; d.rotate = 0; })
