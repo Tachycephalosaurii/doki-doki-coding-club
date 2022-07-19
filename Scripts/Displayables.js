@@ -1,4 +1,4 @@
-export var pos = (v, type) => {
+var pos = (v, type) => {
   if (!type) {
     if (Number.isInteger(v)) type = 'int';
     else if (!Number.isNaN(v)) type = 'float';
@@ -16,18 +16,18 @@ export var pos = (v, type) => {
   }
 }
 
-export var getUnit = (num) => {
+var getUnit = (num) => {
   var u = /[^0-9.,]+/.exec(num);
   if (u !== null) return u[0];
 }
-export var getValue = (num) => +num.replace(/[^0-9.,]+/, '');
+var getValue = (num) => +num.replace(/[^0-9.,]+/, '');
 
-export var float = (num) => {
+var float = (num) => {
   if (Number.isNaN(+num)) return float(+getValue(num)) + getUnit(num);
   return +num.toLocaleString("en", { useGrouping: false, minimumFractionDigits: 1 });
 }
 
-export var int = (num) => {
+var int = (num) => {
   if (Number.isNaN(+num)) return int(+getValue(num)) + getUnit(num);
   return Math.round(+num);
 }
@@ -263,4 +263,5 @@ Displayable.init = async () => {
   Displayable.all = Object.keys(window).filter((e) => window[e] instanceof Displayable);
   Displayable.all.forEach((e) => window[e].name = e);
 }
-export default Displayable;
+
+export { Displayable, pos, getUnit, getValue, float, int };
