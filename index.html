@@ -160,13 +160,13 @@
     
     function draw() {
       ATL.exec;
-      console.log(0);
       window.requestAnimationFrame(draw);
     }
     window.requestAnimationFrame(draw);
   </script>
 
   <script>
+    var screens = document.getElementById("screens");
     var contextmenu = true;
     $(window).contextmenu((ev) => contextmenu ? $(this).unbind('submit').submit() : ev.preventDefault());
     function resize(element) {
@@ -176,7 +176,7 @@
       element.style.margin = `-${element.clientHeight * scl * 0.5}px 0 0 -${element.clientWidth * scl * 0.5}px`;
     }
     resize(screens);
-    window.addEventListener('resize', () => resize(gameWindow));
+    window.addEventListener('resize', () => resize(screens));
   </script>
 </body>
 </html>
