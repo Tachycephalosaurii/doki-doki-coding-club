@@ -5,12 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png">
+  <link rel="icon"
+    href="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
-  <title>Document</title>
+  <title>DDCC</title>
   <style>
     body {
       font-family: "Noto Sans";
@@ -23,163 +24,122 @@
       user-select: all;
     }
 
-    #screens {
-      background-color: rgb(199, 114, 114);
-      width: 1280px;
-      height: 720px;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-    }
+    .layer {
+      display: none;
+      overflow: hidden;
 
-    #transient {
-      background-color: white;
-      width: 1280px;
-      height: 720px;
-      opacity: 0%;
-      /*
-      animation: fade 1s;
-      animation-fill-mode: forwards;
-      */
-    }
-
-    #menu {
-      z-index: 0;
-    }
-
-    #ui {
-      z-index: 1;
-    }
-
-
-    @keyframes fade {
-      from {
-        opacity: 100%;
-      }
-
-      to {
-        opacity: 0%;
-      }
-    }
-
-
-
-
-    .center {
-      margin: 0;
       padding: 0;
+      margin: 0;
+      width: 1280px;
+      height: 720px;
 
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
       transform-origin: left top;
+      transform: translate(-50%, -50%);
+
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
-    .distort {
-      font-family: Courier;
-      font-weight: bold;
+    img {
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
-    img:hover {
-      background-color: blueviolet;
+
+    #master {
+      background-color: white;
+      z-index: 0;
+    }
+
+    #transient {
+      z-index: 1;
+    }
+
+    #screens {
+      z-index: 2;
+    }
+
+    #overlay {
+      z-index: 3;
     }
   </style>
 </head>
 
 <body>
-  <div id="screens" onmouseover="contextmenu=false;" onmouseout="contextmenu=true;">
-    <h1 class="center">This is a header</h1>
-    This scaled <span class="distort">window</span> is 1280x720
-    <div id="master">
-      <canvas id="game"></canvas>
-      <div id="displayables">
-
-      </div>
+  <main>
+    <div id="master" class="layer">
+      <!-- Game Elements -->
     </div>
-    <div class="center" id="transient">
-      <div id="menu">
-        <h1>Doki Doki</h1>
-      </div>
+    <div id="transient" class="layer">
+      <!-- UI Elements -->
     </div>
-  </div>
-  <div id="overlay">
-    <div id="ui">
-
+    <div id="screens" class="layer">
+      <!-- Main Menu Elements -->
     </div>
-  </div>
-  <script>console.clear();</script>
+    <div id="overlay" class="layer">
+      <!-- UI Over Main Menu -->
+    </div>
+  </main>
 
-  <!--LIBRARIES-->
+  <!-- JQuery,  Velocity.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
-  <!-- Tone.js WebAudio Library -->
+  <script src="//cdn.jsdelivr.net/velocity/1.2.1/velocity.min.js"></script>
+
+  <!-- Tone.js WebAudio -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"
     integrity="sha512-59wz3/QJMP1QgULLB5O08pqS8wIdlvK1iJaRZm6ESyRrUuxjdRrnKepXKbSTbjX3ZZZ19AbiCJZEaZN7Zm8OjQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
   <!-- Songs (too large so had to make them external) -->
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/Dreams_of_Love_and_Literature.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/Dreams_of_Love_and_Literature.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/Flute.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/My_Confession.js"></script>
-  
+  <script
+    src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@main/Music/Songs/My_Confession.js"></script>
 
   <!-- Game Scripts -->
-  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/Music.js"></script>
-  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/ATL.js"></script>
-  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/Displayables.js"></script>
-  <script type="module" src="https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/Animation.js"></script>
+  <script type="application/javascript" src="/Scripts/Music.js"></script>
+  <script type="application/javascript" src="/Scripts/ATL.js"></script>
+  <script src="build.js" type="application/javascript"></script>
+  <script src="transforms.js" type="application/javascript"></script>
+  <script type="application/javascript">
+    console.clear();
+    /** 
+     * TODO: Make layers a Transform
+     */
+  </script>
 
-  <script type="module">
-    import Music from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/Music.js";
-    import ATL from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/ATL.js";
-    import Displayable from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/Displayables.js";
-    import Animation from "https://cdn.jsdelivr.net/gh/Tachycephalosaurii/doki-doki-coding-club@71911663e33bd148316d029ec040102db4530486/Scripts/Animation.js";
-    
-    var width = 1280, height = 720;
-    var d = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
-    var d2 = new Displayable("https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png");
-    
-    //Displayable.init(); //adds id's to the <img>'s
-    d.show;
-    d2.hide;
-    d.anchor = '0.5 1';
-    d.ypos = height-d.html.height;
-    ATL.block = () => {
-      ATL
-      .schedule(() => { d.xpos++; })
-      .repeat(99)
-      .pause
-      .block=()=>
-        ATL.schedule(()=>{d.rotate = Math.floor(Math.random() * 45);})
-        .pause
-        .repeat = 2;
-      ATL.repeat = 1;
-    };
-    ATL
-    .next
-    .schedule(()=>{d.alpha = 0.5; d.rotate = 0; })
-    .pause
-    .next
-    .schedule(()=>{ d.alpha = 1; });
-    
+  <script type="application/javascript">
+    var y = new Image('yee', 'https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/avatars/robot_female_3.png');
+    y.xysize(600, 600);
+    y.show = {
+      at: tinstant
+    }
+  </script>
+
+
+  <script>
     function draw() {
       ATL.exec;
       window.requestAnimationFrame(draw);
     }
     window.requestAnimationFrame(draw);
-    window.addEventListener('click', ()=>location.reload());
-  </script>
 
-  <script type="application/javascript">
-    var screens = document.getElementById("screens");
-    var contextmenu = true;
-    $(window).contextmenu((ev) => contextmenu ? $(this).unbind('submit').submit() : ev.preventDefault());
-    function resize(element) {
-      element.className = 'center';
-      var scl = Math.min(window.innerWidth / element.clientWidth, window.innerHeight / element.clientHeight);
-      element.style.transform = `scale(${scl})`;
-      element.style.margin = `-${element.clientHeight * scl * 0.5}px 0 0 -${element.clientWidth * scl * 0.5}px`;
-    }
-    resize(screens);
-    window.addEventListener('resize', () => resize(screens));
+    window.addEventListener('click', () => {
+      y.show = {
+        at: n_cg2_zoom
+      };
+    });
+    window.addEventListener('keydown', () => {
+      openFullscreen();
+    })
   </script>
 </body>
+
 </html>
